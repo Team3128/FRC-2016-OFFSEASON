@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3128.lib.util;
 
-public class MonodonMath {
+public class NarwhalMath {
 	public static float DegToRad = 0.0174533f; 
 	public static float RadToDeg = 57.2958f; 
 	public static float PI = 3.14159f;
