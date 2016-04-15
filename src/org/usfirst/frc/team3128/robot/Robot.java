@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3128.robot;
 
 import org.usfirst.frc.team3128.lib.NarwhalIterativeRobot;
+import org.usfirst.frc.team3128.lib.input.InputMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
