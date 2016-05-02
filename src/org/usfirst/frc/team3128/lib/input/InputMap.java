@@ -32,6 +32,10 @@ public class InputMap {
 		
 	}
 	
+	public void MapPOV(String inputName, Callable<Boolean> inputFunction) {
+		
+	}
+	
 	/**
 	 * Returns the value of the virtual axis identified by axisName.
 	 * This will return a value that has been modified by an input axis modifier.
@@ -67,5 +71,21 @@ public class InputMap {
 	 */
 	public boolean GetToggle(String toggleName) {
 		return false;
+	}
+	
+	/**
+	 * Returns the current state of the specified POV.
+	 * @param povName
+	 * @return An integer 0-8 corresponding to the position of the POV
+	 *       1
+	 *   8       2
+	 *  
+	 * 7     0     3
+	 *    
+	 *   6       4
+	 *       5
+	 */
+	public int GetPOV(String povName) {
+		return 0;
 	}
 }
