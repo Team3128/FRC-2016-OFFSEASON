@@ -63,7 +63,7 @@ public class Narwhal3DJoystick {
 	 * true - button is being pressed
 	 * false - button is not being pressed 
 	 */
-	public boolean getButton(int buttonID) {
+	public boolean buttonIsDown(int buttonID) {
 		return joy.getRawButton(buttonID);
 	}
 	
