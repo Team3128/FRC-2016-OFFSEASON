@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3128.lib.inputs;
+package org.usfirst.frc.team3128.lib.inputs.joystick;
 
 public enum JoystickElement {
 	BUTTON,

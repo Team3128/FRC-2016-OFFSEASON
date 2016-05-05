@@ -1,26 +1,26 @@
 package org.usfirst.frc.team3128.lib.inputs;
 
-import java.util.concurrent.Callable;
 import java.util.List;
 
 import org.usfirst.frc.team3128.lib.NarwhalRunnable;
 import org.usfirst.frc.team3128.lib.NarwhalThread;
-
-import org.usfirst.frc.team3128.lib.inputs.Narwhal3DJoystick;
-import org.usfirst.frc.team3128.lib.inputs.JoystickElement;
-import org.usfirst.frc.team3128.lib.inputs.InputCallback;
+import org.usfirst.frc.team3128.lib.inputs.InputFunction;
+import org.usfirst.frc.team3128.lib.inputs.joystick.JoystickElement;
+import org.usfirst.frc.team3128.lib.inputs.joystick.Narwhal3DJoystick;
 
 
 public class InputScanner implements NarwhalRunnable {
-	private InputCallback inputFunc;
-	public Narwhal3DJoystick joy;
+	private InputFunction inputFunc;
+	private Narwhal3DJoystick joy;
 	private float freq;
 	private JoystickElement joyElement;
-	private List<Integer> elementID;
+	private int[] elementID;
+	
+	private boolean buttonOldState = false;
 	
 	private NarwhalThread inputScannerThread = new NarwhalThread(this, freq / 100.0);
 	
-	public InputScanner(JoystickElement joyElement, List<Integer> elementID, Narwhal3DJoystick joy, float freq, InputCallback inputFunc) {
+	public InputScanner(JoystickElement joyElement, Narwhal3DJoystick joy, float freq, InputFunction inputFunc, int... elementID) {
 		this.joy = joy;
 		this.elementID = elementID;
 		this.inputFunc = inputFunc;
@@ -46,7 +46,13 @@ public class InputScanner implements NarwhalRunnable {
 				}
 			}
 			if (shouldRun) {
-				inputFunc.inputCallback();
+				if (buttonOldState == false) {
+					inputFunc.runFunction();
+					buttonOldState = true;
+				}
+				else {
+					buttonOldState = false;
+				}
 			}
 		}
 		else if (joyElement == JoystickElement.POV) {
@@ -57,11 +63,11 @@ public class InputScanner implements NarwhalRunnable {
 				}
 			}
 			if (shouldRun) {
-				inputFunc.inputCallback();
+				inputFunc.runFunction();
 			}
 		}
 		else {
-			inputFunc.inputCallback();
+			inputFunc.runFunction();
 		}
 	}
 }

@@ -2,12 +2,11 @@ package org.usfirst.frc.team3128.lib.inputs;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Callable;
 
-import org.usfirst.frc.team3128.lib.inputs.Narwhal3DJoystick;
 import org.usfirst.frc.team3128.lib.inputs.InputScanner;
-import org.usfirst.frc.team3128.lib.inputs.JoystickElement;
-import org.usfirst.frc.team3128.lib.inputs.InputCallback;
+import org.usfirst.frc.team3128.lib.inputs.joystick.JoystickElement;
+import org.usfirst.frc.team3128.lib.inputs.joystick.Narwhal3DJoystick;
+import org.usfirst.frc.team3128.lib.inputs.InputFunction;
 
 
 /**
@@ -37,8 +36,8 @@ public class InputAssignment {
 		joysticks.put(joyName, joystick);
 	}
 	
-	public void newJoystickScanner(String scannerName, String joyName, JoystickElement joyElement, List<Integer> elementID, float freq, InputCallback funcToRun) {
-		inputScanners.put(scannerName, new InputScanner(joyElement, elementID, joysticks.get(joyName), freq, funcToRun));
+	public void newJoystickScanner(String scannerName, String joyName, JoystickElement joyElement, float freq, InputFunction funcToRun, int... elementID) {
+		inputScanners.put(scannerName, new InputScanner(joyElement, joysticks.get(joyName), freq, funcToRun, elementID));
 		inputScanners.get(scannerName).startScanning();
 	}
 	
