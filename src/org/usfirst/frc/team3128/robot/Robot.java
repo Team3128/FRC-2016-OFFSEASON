@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.usfirst.frc.team3128.lib.NarwhalIterativeRobot;
+import org.usfirst.frc.team3128.lib.input.InputFunction;
 import org.usfirst.frc.team3128.lib.input.InputMap;
+import org.usfirst.frc.team3128.lib.input.InputMonitor;
 import org.usfirst.frc.team3128.lib.input.joystick.JoystickElement;
 import org.usfirst.frc.team3128.lib.input.joystick.JoystickElementID;
 import org.usfirst.frc.team3128.lib.input.joystick.Narwhal3DJoystick;
 import org.usfirst.frc.team3128.lib.inputs.InputAssignment;
-import org.usfirst.frc.team3128.lib.inputs.InputFunction;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +32,7 @@ public class Robot extends NarwhalIterativeRobot {
     }
     
     public void teleopInit() {
+    	/*
     	InputAssignment inAssign;
     	inAssign = InputAssignment.getInstance();
     	
@@ -52,12 +54,27 @@ public class Robot extends NarwhalIterativeRobot {
     		double xPos = rightJoy.getX();
     	});
     	
+    	*/
+    	
+    	Narwhal3DJoystick rightJoy = new Narwhal3DJoystick(0);
+    	
+    	InputMap.getInstance().addJoystick("rightJoy", rightJoy);
+    	
     	//This is how I want the button mapping to look
     	//This allows us to quickly map buttons and give them names that have meaning
     	//It also is very clean and relatively straight forward and can all be put in one place
-    	InputMap.getInstance().MapAxis("RightX", () -> rightJoy.getX());
-    	InputMap.getInstance().MapAxis("RightY", () -> rightJoy.getY());
-    	InputMap.getInstance().MapButton("FireBall", () -> rightJoy.buttonIsDown(JoystickElementID.BUTTON1));
+    	InputMap.getInstance().MapAxis("rightX", "rightJoy", JoystickElement.XAXIS);
+    	InputMap.getInstance().MapAxis("rightYThreshed", "rightJoy", JoystickElement.YAXIS_THRESHED);
+    	InputMap.getInstance().MapButton("ToggleIntake", "rightJoy", JoystickElementID.BUTTON1);
+    	InputMap.getInstance().MapPOV("IntakePOV", "rightJoy", 0);
+    	
+    	InputMap.getInstance().addMonitor("IntakePOVMonitor", new InputMonitor(1, () -> 
+    	{
+    		if(InputMap.getInstance().GetPOV("IntakePOV") == JoystickElementID.POVPos1 || InputMap.getInstance().GetPOV("IntakePOV") == JoystickElementID.POVPos8 || InputMap.getInstance().GetPOV("IntakePOV") == JoystickElementID.POVPos2) {
+    			//Run the intake foreward
+    		}	
+    	})
+    	);
     }
 
     public void teleopPeriodic() {

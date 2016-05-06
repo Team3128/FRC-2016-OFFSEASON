@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.usfirst.frc.team3128.lib.NarwhalRunnable;
 import org.usfirst.frc.team3128.lib.NarwhalThread;
+import org.usfirst.frc.team3128.lib.input.InputFunction;
 import org.usfirst.frc.team3128.lib.input.joystick.JoystickElement;
 import org.usfirst.frc.team3128.lib.input.joystick.Narwhal3DJoystick;
-import org.usfirst.frc.team3128.lib.inputs.InputFunction;
 
 
 public class InputScanner implements NarwhalRunnable {
