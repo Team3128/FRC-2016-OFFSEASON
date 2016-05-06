@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3128.lib.inputs.joystick;
+package org.usfirst.frc.team3128.lib.input.joystick;
 
 public class JoystickElementID {
 	public static int BUTTON1 = 1;
