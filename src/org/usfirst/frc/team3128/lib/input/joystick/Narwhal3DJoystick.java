@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3128.lib.inputs.joystick;
+package org.usfirst.frc.team3128.lib.input.joystick;
 
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc.team3128.lib.util.NarwhalMath;

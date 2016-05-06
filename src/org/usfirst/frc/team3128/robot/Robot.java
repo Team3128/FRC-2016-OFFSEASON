@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.usfirst.frc.team3128.lib.NarwhalIterativeRobot;
 import org.usfirst.frc.team3128.lib.input.InputMap;
+import org.usfirst.frc.team3128.lib.input.joystick.JoystickElement;
+import org.usfirst.frc.team3128.lib.input.joystick.JoystickElementID;
+import org.usfirst.frc.team3128.lib.input.joystick.Narwhal3DJoystick;
 import org.usfirst.frc.team3128.lib.inputs.InputAssignment;
 import org.usfirst.frc.team3128.lib.inputs.InputFunction;
-import org.usfirst.frc.team3128.lib.inputs.joystick.JoystickElement;
-import org.usfirst.frc.team3128.lib.inputs.joystick.Narwhal3DJoystick;
-import org.usfirst.frc.team3128.lib.inputs.joystick.JoystickElementID;
 
 /**
  * The VM is configured to automatically run this class, and to call the
