@@ -19,8 +19,8 @@ public class NarwhalThread {
 	}
 	
 	public void start() {
-		if(!running) {
-			threadTimer.schedule(periodicTask, 0l, (long)period * 1000);
+		if(!running) {			
+			threadTimer.schedule(periodicTask, 0l, (long)(period * 1000));
 			running = true;
 		}
 	}

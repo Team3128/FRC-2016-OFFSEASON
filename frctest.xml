@@ -95,6 +95,19 @@
 		</junit>		
 	</target>
 	
+	
+	<target name="emulatordebug" depends="emulatorjar">
+		<java fork="true" classname="frctest.EmulatorMain">
+		  <classpath>
+		    <pathelement path="${emulatorclasspath}"/>
+		    <pathelement location="${robot-code-jar}"/>
+		  </classpath>
+		  <sysproperty key="java.library.path" value="${native-lib-folder}"/>
+  		  <jvmarg value="-Xdebug" />
+  		  <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5433" />
+		</java>		
+	</target>
+	
 	<target name="runemulator" depends="emulatorjar" description="Run the robot emulator.">
 		<java fork="true" classname="frctest.EmulatorMain">
 		  <classpath>
