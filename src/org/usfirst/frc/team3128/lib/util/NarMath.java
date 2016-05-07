@@ -10,7 +10,7 @@ package org.usfirst.frc.team3128.lib.util;
  * @author Garrison, Jamie
  *
  */
-public class NMath {
+public class NarMath {
 	
 	public static final double PI = 3.14159265358979323846;
 
@@ -233,7 +233,7 @@ public class NMath {
 	 * Same as Lerp but makes sure the values interpolate correctly when they wrap around 360 degrees.
 	 */
 	public static double LerpAngle(double rangeMin, double rangeMax, double t) {
-		return normalizeAngle(Lerp(rangeMin, rangeMax, t));
+		return NormalizeAngle(Lerp(rangeMin, rangeMax, t));
 	}
 	
 	/**
@@ -294,7 +294,7 @@ public class NMath {
 	 */
 	public static <T extends Comparable<T>> T Max(T thing1, T thing2) 
 	{
-		return ((Comparable<T>)thing1).compareTo(thing2) == 1 ? thing1 : thing2;
+		return ((Comparable<T>)thing1).compareTo(thing2) >= 1 ? thing1 : thing2;
 	}
 	
 	
@@ -321,7 +321,7 @@ public class NMath {
 	 */
 	public static <T extends Comparable<T>> T Min(T thing1, T thing2) 
 	{
-		return ((Comparable<T>)thing1).compareTo(thing2) == 1 ? thing2 : thing1;
+		return ((Comparable<T>)thing1).compareTo(thing2) >= 1 ? thing2 : thing1;
 	}
 	
 	/** 

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3128.lib.input.joystick;
 
 import edu.wpi.first.wpilibj.Joystick;
-import org.usfirst.frc.team3128.lib.util.NMath;
+import org.usfirst.frc.team3128.lib.util.NarMath;
 
 /**
  * Logitech 3D Extreme USB Joystick Methods
@@ -33,14 +33,14 @@ public class Narwhal3DJoystick {
 	 * @return The thresholded value of the x axis (from -1.0 to 1.0) that discards any control within 0.2 of 0
 	 */
 	public double getXThreshed() {
-		return NMath.Thresh(0.2, joy.getX());
+		return NarMath.Thresh(0.2, joy.getX());
 	}
 	
 	/**
 	 * @return The thresholded value of the y axis (from -1.0 to 1.0) that discards any control within 0.2 of 0
 	 */
 	public double getYThreshed() {
-		return NMath.Thresh(0.2, joy.getY());
+		return NarMath.Thresh(0.2, joy.getY());
 	}
 	
 	/**
