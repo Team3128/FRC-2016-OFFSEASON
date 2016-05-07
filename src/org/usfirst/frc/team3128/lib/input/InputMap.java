@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3128.lib.input;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 import org.usfirst.frc.team3128.lib.input.joystick.AxisElement;
 import org.usfirst.frc.team3128.lib.input.joystick.ButtonElement;

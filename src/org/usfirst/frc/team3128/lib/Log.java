@@ -65,6 +65,6 @@ public class Log
 	
 	private static void log(String severity, String category, String message)
 	{
-		System.out.println(String.format("[%s] [%s] %s", severity, category, message));
+		System.out.printf("[%s] [%s] %s\n", severity, category, message);
 	}
 }
