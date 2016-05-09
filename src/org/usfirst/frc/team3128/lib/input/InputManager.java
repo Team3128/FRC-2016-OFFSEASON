@@ -11,41 +11,27 @@ import org.usfirst.frc.team3128.lib.input.joystick.POVElement;
 /**
  * Singleton class used for mapping inputs to virtual buttons and axis.
  */
-public class InputMap {
+public class InputManager {
 	
-	private static InputMap instance = null;
-	private HashMap<String, InputMonitor> inputMap;
+	private static InputManager instance = null;
 	
 	private HashMap<String, Narwhal3DJoystick> joystickMap;
-	
 	private HashMap<String, ButtonElement> buttonMap;
 	private HashMap<String, AxisElement> axisMap;
 	private HashMap<String, POVElement> povMap;
 	
-	protected InputMap() {} //Prevent instantiation of singleton
+	protected InputManager() {} //Prevent instantiation of singleton
 	
-	public static InputMap getInstance() {
+	public static InputManager getInstance() {
 		if(instance == null) {
-	         instance = new InputMap();
+	         instance = new InputManager();
 	      }
 	      return instance;
-	}
-	
-	public void addMonitor(String monitorName, InputMonitor inMonitor) {
-		inputMap.put(monitorName, inMonitor);
-		inputMap.get(monitorName).startScanning();
-	}
-	
-	public void removeMonitor(String monitorName) {
-		inputMap.get(monitorName).stopScanning();
-		inputMap.remove(monitorName);
 	}
 	
 	public void addJoystick(String joyName, Narwhal3DJoystick joy) {
 		joystickMap.put(joyName, joy);
 	}
-	
-	
 	
 	public void MapAxis(String inputName, String joyName, JoystickElement axis) {
 		axisMap.put(inputName, new AxisElement(joyName, axis));
@@ -57,10 +43,6 @@ public class InputMap {
 	
 	public void MapPOV(String inputName, String joyName, int povID) {
 		povMap.put(inputName, new POVElement(joyName, povID));
-	}
-	
-	public void MapToggle(String inputName, String joyName) {
-		
 	}
 	
 	/**
@@ -98,13 +80,7 @@ public class InputMap {
 		ButtonElement button = buttonMap.get(buttonName);
 		Narwhal3DJoystick joystick = joystickMap.get(button.joyName);
 		
-		if (joystick.buttonIsDown(button.buttonID)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-		
+		return joystick.buttonIsDown(button.buttonID);
 	}
 	
 	/**
@@ -124,14 +100,5 @@ public class InputMap {
 		Narwhal3DJoystick joystick = joystickMap.get(pov.joyName);
 		
 		return joystick.getPOV(pov.povID);
-	}
-	
-	/**
-	 * Returns the current state of the specified toggle.
-	 * @param toggleName
-	 * @return True if the toggle is on, false if the toggle is off.
-	 */
-	public boolean GetToggle(String toggleName) {
-		return false;
 	}
 }
