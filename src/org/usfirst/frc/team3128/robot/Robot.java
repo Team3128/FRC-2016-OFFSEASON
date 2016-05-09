@@ -38,10 +38,10 @@ public class Robot extends NarwhalIterativeRobot {
     	//This is how I want the button mapping to look
     	//This allows us to quickly map buttons and give them names that have meaning
     	//It also is very clean and relatively straight forward and can all be put in one place
-    	InputManager.getInstance().MapAxis("rightX", "rightJoy", JoystickElement.XAXIS);
-    	InputManager.getInstance().MapAxis("rightYThreshed", "rightJoy", JoystickElement.YAXIS_THRESHED);
-    	InputManager.getInstance().MapButton("ToggleIntake", "rightJoy", JoystickElementID.BUTTON1);
-    	InputManager.getInstance().MapPOV("IntakePOV", "rightJoy", 0);
+    	InputManager.getInstance().mapAxis("rightX", "rightJoy", JoystickElement.XAXIS);
+    	InputManager.getInstance().mapAxis("rightYThreshed", "rightJoy", JoystickElement.YAXIS_THRESHED);
+    	InputManager.getInstance().mapButton("ToggleIntake", "rightJoy", JoystickElementID.BUTTON1);
+    	InputManager.getInstance().mapPOV("IntakePOV", "rightJoy", 0);
     }
 
     public void teleopPeriodic() {
@@ -49,7 +49,7 @@ public class Robot extends NarwhalIterativeRobot {
     	//Note; these would be in different classes for each sub system, not in the teleop loop
     	//but this gives a good idea of how it will be used.
     	//Super clean and makes total sense for anyone looking at it
-    	if(InputManager.getInstance().GetButton("FireBall")) {
+    	if(InputManager.getInstance().getButton("FireBall")) {
     		//fire the ball
     	}
     }

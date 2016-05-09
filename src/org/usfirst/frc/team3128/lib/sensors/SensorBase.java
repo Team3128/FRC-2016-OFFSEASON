@@ -7,14 +7,14 @@ public abstract class SensorBase implements NarwhalRunnable {
 	public boolean loggingEnabled = false;
 	
 	//Update Sensor Value
-	public abstract void SensorUpdate();
-	public abstract void LogSensorValue();
+	public abstract void update();
+	public abstract void logSensorValue();
 	
 	@Override
 	public void run() {
-		SensorUpdate();
+		update();
 		
 		if(loggingEnabled)
-			LogSensorValue();
+			logSensorValue();
 	}
 }

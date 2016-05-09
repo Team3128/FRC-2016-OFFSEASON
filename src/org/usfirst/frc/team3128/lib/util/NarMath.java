@@ -22,7 +22,7 @@ public class NarMath {
 	 * @param d
 	 */
 	//NOTE: Exists in Java's built-in math
-	public static double Abs(double d) {
+	public static double abs(double d) {
 		if (d < 0) {
 			d = -d;
 		}
@@ -33,7 +33,7 @@ public class NarMath {
 	 * Returns the arc-cosine of d - the angle in degrees whose cosine is d.
 	 * @param d
 	 */
-	public static double Acos(double d) {
+	public static double acos(double d) {
 		return Math.acos(d) * radToDeg;
 	}
 	
@@ -44,7 +44,7 @@ public class NarMath {
 	 * @param a
 	 * @param b
 	 */
-	public static boolean Approximately(double a, double b) {
+	public static boolean approximately(double a, double b) {
 		return true;
 	}
 	
@@ -52,7 +52,7 @@ public class NarMath {
 	 * Returns the arc-sine of d - the angle in degrees whose sine is d.
 	 * @param d
 	 */
-	public static double Asin(double d) {
+	public static double asin(double d) {
 		return Math.asin(d) * radToDeg;
 	}
 	
@@ -60,7 +60,7 @@ public class NarMath {
 	 * Returns the arc-tangent of d - the angle in degrees whose tangent is d.
 	 * @param d
 	 */
-	public static double Atan(double d) {
+	public static double atan(double d) {
 		return Math.atan(d) * radToDeg;
 	}
 	
@@ -71,7 +71,7 @@ public class NarMath {
 	 * @param x
 	 * @param y
 	 */
-	public static double Atan2(double x, double y) {
+	public static double atan2(double x, double y) {
 		return Math.atan2(y, x) * radToDeg;
 	}
 	
@@ -81,7 +81,7 @@ public class NarMath {
 	 * Throws if the result cannot be represented by an integer.
 	 * @param d
 	 */
-	public static int Ceil(double d) {
+	public static int ceil(double d) {
 		double ceilinged = Math.ceil(d);
 		if(!Double.isFinite(ceilinged) || ceilinged > Integer.MAX_VALUE)
 		{
@@ -97,7 +97,7 @@ public class NarMath {
 	 * Throws if the result cannot be represented by an integer.
 	 * @param d
 	 */
-	public static int Floor(double d)
+	public static int floor(double d)
 	{
 		double floored = Math.floor(d);
 		   
@@ -115,7 +115,7 @@ public class NarMath {
 	 * @param min
 	 * @param max
 	 */
-	public static double Clamp(double d, double min, double max) {
+	public static double clamp(double d, double min, double max) {
 		if (d > max) {
 			d = max;
 		}
@@ -129,8 +129,8 @@ public class NarMath {
 	 * Clamps value between 0 and 1 and returns value.
 	 * @param d
 	 */
-	public static double Clamp01(double d) {
-		Clamp(d, 0, 1);
+	public static double clamp01(double d) {
+		clamp(d, 0, 1);
 		return d;
 	}
 	
@@ -140,8 +140,8 @@ public class NarMath {
 	 * Great for motor powers!
 	 * @param d
 	 */
-	public static double ClampPosNeg1(double d) {
-		Clamp(d, -1, 1);
+	public static double clampPosNeg1(double d) {
+		clamp(d, -1, 1);
 		return d;
 	}
 
@@ -149,15 +149,15 @@ public class NarMath {
 	 * Returns the power of 2 closest to the argument.
 	 * @param d
 	 */
-	public static int ClosestPowerOf2(double d) {
-		return Round(Log(2, d));
+	public static int closestPowerOf2(double d) {
+		return round(log(2, d));
 	}
 	
 	/**
 	 * Returns the cosine of angle d in degrees.
 	 * @param d
 	 */
-	public static double Cos(double d) {
+	public static double cos(double d) {
 		return Math.cos(degToRad *  d);
 	}
 	
@@ -165,7 +165,7 @@ public class NarMath {
 	 * Returns the sine of angle d in degrees.
 	 * @param d
 	 */
-	public static double Sin(double d) {
+	public static double sin(double d) {
 		return Math.sin(degToRad *  d);
 	}
 	
@@ -173,7 +173,7 @@ public class NarMath {
 	 * Returns the tangent of angle d in degrees.
 	 * @param d
 	 */
-	public static double Tan(double d) {
+	public static double tan(double d) {
 		return Math.tan(degToRad *  d);
 	}
 	
@@ -182,7 +182,7 @@ public class NarMath {
 	 * @param a
 	 * @param b
 	 */
-	public static double DeltaAngle(double a, double b) {
+	public static double deltaAngle(double a, double b) {
 		double result = Math.abs(b-a);
 		if (result > 180) {
 			result = 360 - result;
@@ -197,7 +197,7 @@ public class NarMath {
 	 * @param d
 	 * @return
 	 */
-	public static double InverseLerp(double interpolatedVal, double rangeMin, double rangeMax) {
+	public static double inverseLerp(double interpolatedVal, double rangeMin, double rangeMax) {
 		return (interpolatedVal - rangeMin) / (rangeMax - rangeMin);
 	}
 	
@@ -205,7 +205,7 @@ public class NarMath {
 	 * Returns true if the integer is a power of two.
 	 * @param i
 	 */
-	public static boolean IsPowerOf2(int i) 
+	public static boolean isPowerOf2(int i) 
 	{
 		while(i % 2 == 0)
 		{
@@ -225,22 +225,22 @@ public class NarMath {
 	 * 
 	 * t should be between 0 and 1.
 	 */
-	public static double Lerp(double rangeMin, double rangeMax, double t) {
+	public static double lerp(double rangeMin, double rangeMax, double t) {
 		return rangeMin + t * (rangeMax - rangeMin);
 	}
 	
 	/**
 	 * Same as Lerp but makes sure the values interpolate correctly when they wrap around 360 degrees.
 	 */
-	public static double LerpAngle(double rangeMin, double rangeMax, double t) {
-		return NormalizeAngle(Lerp(rangeMin, rangeMax, t));
+	public static double lerpAngle(double rangeMin, double rangeMax, double t) {
+		return normalizeAngle(lerp(rangeMin, rangeMax, t));
 	}
 	
 	/**
 	 * Returns the exponent needed to make e (Euler's number) the given number.
 	 * @param d
 	 */
-	public static double LogE(double d) {
+	public static double logE(double d) {
 		return Math.log(d);
 	}
 	
@@ -248,7 +248,7 @@ public class NarMath {
 	 * Returns the exponent needed to make 10 the given number.
 	 * @param d
 	 */
-	public static double Log10(double d) {
+	public static double log10(double d) {
 		return Math.log10(d);
 	}
 	
@@ -259,7 +259,7 @@ public class NarMath {
 	 * Returns the exponent needed to make 2 the given number.
 	 * @param d
 	 */
-	public static double Log2(double d) {
+	public static double log2(double d) {
 		return Math.log10(d) / log2Base10;
 	}
 	
@@ -267,7 +267,7 @@ public class NarMath {
 	 * Returns the exponent needed to make the base the given number.
 	 * @param d
 	 */
-	public static double Log(double base, double num) {
+	public static double log(double base, double num) {
 		return Math.log(num) / Math.log(base);
 	}
 	
@@ -275,7 +275,7 @@ public class NarMath {
 	 * Returns largest of two doubles.
 	 * @param d
 	 */
-	public static double Max(double num1, double num2) {
+	public static double max(double num1, double num2) {
 		return Math.max(num1, num2);
 	}
 	
@@ -283,7 +283,7 @@ public class NarMath {
 	 * Returns largest of two integers.
 	 * @param d
 	 */
-	public static int Max(int num1, int num2) {
+	public static int max(int num1, int num2) {
 		return Math.max(num1, num2);
 	}
 	
@@ -292,7 +292,7 @@ public class NarMath {
 	 * Returns largest of two Comparable objects.
 	 * @param d
 	 */
-	public static <T extends Comparable<T>> T Max(T thing1, T thing2) 
+	public static <T extends Comparable<T>> T max(T thing1, T thing2) 
 	{
 		return ((Comparable<T>)thing1).compareTo(thing2) >= 1 ? thing1 : thing2;
 	}
@@ -302,7 +302,7 @@ public class NarMath {
 	 * Returns smallest of two doubles.
 	 * @param d
 	 */
-	public static double Min(double num1, double num2) {
+	public static double min(double num1, double num2) {
 		return Math.min(num1, num2);
 	}
 	
@@ -310,7 +310,7 @@ public class NarMath {
 	 * Returns smallest of two integers.
 	 * @param d
 	 */
-	public static int Min(int num1, int num2) {
+	public static int min(int num1, int num2) {
 		return Math.min(num1, num2);
 	}
 	
@@ -319,7 +319,7 @@ public class NarMath {
 	 * Returns smallest of two Comparable objects.
 	 * @param d
 	 */
-	public static <T extends Comparable<T>> T Min(T thing1, T thing2) 
+	public static <T extends Comparable<T>> T min(T thing1, T thing2) 
 	{
 		return ((Comparable<T>)thing1).compareTo(thing2) >= 1 ? thing2 : thing1;
 	}
@@ -331,21 +331,21 @@ public class NarMath {
 	 * @param d
 	 * @return
 	 */
-	public static int NextPosPowerOfTwo(double d) 
+	public static int nextPosPowerOfTwo(double d) 
 	{
 		if(d <= 0)
 		{
 			throw new IllegalArgumentException("Invalid number to find the next power of two of: " + d);
 		}
 				
-		int lowerPowOfTwo = Floor(Log2(d));
+		int lowerPowOfTwo = floor(log2(d));
 		
 		if(lowerPowOfTwo < 0)
 		{
 			return 1;
 		}
 		
-		return IntPow(2, lowerPowOfTwo + 1);
+		return intPow(2, lowerPowOfTwo + 1);
 	}
 	
 	/** 
@@ -354,14 +354,14 @@ public class NarMath {
 	 * @param d
 	 * @return
 	 */
-	public static double NextPowerOfTwo(double d) 
+	public static double nextPowerOfTwo(double d) 
 	{
 		if(d <= 0)
 		{
 			throw new IllegalArgumentException("Invalid number to find the next power of two of: " + d);
 		}
 				
-		return Pow(2, Floor(Log2(d)) + 1);
+		return pow(2, floor(log2(d)) + 1);
 	}
 	
 	/**
@@ -369,7 +369,7 @@ public class NarMath {
 	 * @param d
 	 * @param p
 	 */
-	public static double Pow(double d, double p) {
+	public static double pow(double d, double p) {
 		return Math.pow(d, p);
 	}
 	
@@ -378,7 +378,7 @@ public class NarMath {
 	 * 
 	 * Much more lightweight than the regular function, but also more restricted
 	 */
-	public static int IntPow(int number, int power)
+	public static int intPow(int number, int power)
 	{
 		int result = 1;
 		for(; power >= 1; --power)
@@ -393,7 +393,7 @@ public class NarMath {
 	 * Returns d rounded to the nearest integer.
 	 * @param d
 	 */
-	public static int Round(double d) {
+	public static int round(double d) {
 		return (int)Math.round(d);
 	}
 	
@@ -402,7 +402,7 @@ public class NarMath {
 	* @param n
 	* @return
 	*/
-	public static double Sgn(double n)
+	public static double sgn(double n)
 	{
 		if(n == 0)
 		{
@@ -413,7 +413,7 @@ public class NarMath {
 	
 	}
    
-	public static int Sgn(int n)
+	public static int sgn(int n)
 	{
 		if(n == 0)
 		{
@@ -427,7 +427,7 @@ public class NarMath {
 	 * Returns square root of d.
 	 * @param d
 	 */
-	public static double Sqrt(double d) {
+	public static double sqrt(double d) {
 		return Math.sqrt(d);
 	}
 	
@@ -438,7 +438,7 @@ public class NarMath {
 	 * @param threshold
 	 * @return
 	 */
-	public static double Thresh(double value, double threshold)
+	public static double thresh(double value, double threshold)
 	{
 		if(Math.abs(value) < Math.abs(threshold))
 		{
@@ -453,7 +453,7 @@ public class NarMath {
 	 * @param threshold
 	 * @return
 	 */
-	public static float Thresh(float value, float threshold)
+	public static float thresh(float value, float threshold)
 	{
 		if(Math.abs(value) < Math.abs(threshold))
 		{
@@ -470,7 +470,7 @@ public class NarMath {
 	 * @param wheelCircumference the circumference of the circle
 	 * @return
 	 */
-	public static double LinearDistToAngular(double d, double circumference)
+	public static double linearDistToAngular(double d, double circumference)
 	{
 		return (360 / circumference) * d;
 	}
@@ -483,7 +483,7 @@ public class NarMath {
 	 * @param wheelCircumference the circumference of the circle
 	 * @return
 	 */
-	public static double AngularDistToLinear(double deg, double circumference)
+	public static double angularDistToLinear(double deg, double circumference)
 	{
 		return (deg / 360) * circumference;
 	}
@@ -494,7 +494,7 @@ public class NarMath {
 	 * @param number
 	 * @return
 	 */
-	public static double Square(double number)
+	public static double square(double number)
 	{
 		return number * number;
 	}
@@ -504,7 +504,7 @@ public class NarMath {
 	 * @param number
 	 * @return
 	 */
-	public static int Square(int number)
+	public static int square(int number)
 	{
 		return number * number;
 	}
@@ -518,7 +518,7 @@ public class NarMath {
 	* <p/>
 	* @return the normalized angle on [0, 359]
 	*/
-	public static double NormalizeAngle(double angle)
+	public static double normalizeAngle(double angle)
 	{
 	    double theta = ((angle % 360) + 360) % 360;
 	    return theta;

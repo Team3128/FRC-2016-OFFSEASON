@@ -33,15 +33,15 @@ public class InputManager {
 		joystickMap.put(joyName, joy);
 	}
 	
-	public void MapAxis(String inputName, String joyName, JoystickElement axis) {
+	public void mapAxis(String inputName, String joyName, JoystickElement axis) {
 		axisMap.put(inputName, new AxisElement(joyName, axis));
 	}
 	
-	public void MapButton(String inputName, String joyName, int buttonID) {
+	public void mapButton(String inputName, String joyName, int buttonID) {
 		buttonMap.put(inputName, new ButtonElement(joyName, buttonID));
 	}
 	
-	public void MapPOV(String inputName, String joyName, int povID) {
+	public void mapPOV(String inputName, String joyName, int povID) {
 		povMap.put(inputName, new POVElement(joyName, povID));
 	}
 	
@@ -50,7 +50,7 @@ public class InputManager {
 	 * @param axisName
 	 * @return the unmodified axis value (-1.0 to 1.0)
 	 */
-	public double GetAxis(String axisName) {
+	public double getAxis(String axisName) {
 		AxisElement axis = axisMap.get(axisName);
 		Narwhal3DJoystick joystick = joystickMap.get(axis.joyName);
 		double result = 0;
@@ -76,7 +76,7 @@ public class InputManager {
 	 * @param buttonName
 	 * @return True if the button is held down, false if the button is up
 	 */
-	public boolean GetButton(String buttonName) {
+	public boolean getButton(String buttonName) {
 		ButtonElement button = buttonMap.get(buttonName);
 		Narwhal3DJoystick joystick = joystickMap.get(button.joyName);
 		
@@ -95,7 +95,7 @@ public class InputManager {
 	 *   6       4
 	 *       5
 	 */
-	public int GetPOV(String povName) {
+	public int getPOV(String povName) {
 		POVElement pov = povMap.get(povName);
 		Narwhal3DJoystick joystick = joystickMap.get(pov.joyName);
 		
