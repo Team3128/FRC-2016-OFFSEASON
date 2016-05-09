@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.usfirst.frc.team3128.lib.NarwhalIterativeRobot;
+import org.usfirst.frc.team3128.lib.Subsystem;
 import org.usfirst.frc.team3128.lib.input.InputFunction;
 import org.usfirst.frc.team3128.lib.input.InputManager;
 import org.usfirst.frc.team3128.lib.input.joystick.JoystickElement;
@@ -19,18 +20,23 @@ import org.usfirst.frc.team3128.lib.input.joystick.Narwhal3DJoystick;
  * directory.
  */
 public class Robot extends NarwhalIterativeRobot {
+	
+	private List<Subsystem> subsystems;
 
     public void robotInit() {
     }
     
     public void autonomousInit() {
+    	for(Subsystem s : subsystems)
+    		s.initAutonomous();
     }
 
     public void autonomousPeriodic() {
+    	for(Subsystem s : subsystems)
+    		s.updateAutonomous();
     }
     
     public void teleopInit() {
-    	
     	Narwhal3DJoystick rightJoy = new Narwhal3DJoystick(0);
     	
     	InputManager.getInstance().addJoystick("rightJoy", rightJoy);
@@ -42,16 +48,14 @@ public class Robot extends NarwhalIterativeRobot {
     	InputManager.getInstance().mapAxis("rightYThreshed", "rightJoy", JoystickElement.YAXIS_THRESHED);
     	InputManager.getInstance().mapButton("ToggleIntake", "rightJoy", JoystickElementID.BUTTON1);
     	InputManager.getInstance().mapPOV("IntakePOV", "rightJoy", 0);
+    	
+    	for(Subsystem s : subsystems)
+    		s.initTeleop();
     }
 
     public void teleopPeriodic() {
-    	//Then, in subsystems, we can just call them like this:
-    	//Note; these would be in different classes for each sub system, not in the teleop loop
-    	//but this gives a good idea of how it will be used.
-    	//Super clean and makes total sense for anyone looking at it
-    	if(InputManager.getInstance().getButton("FireBall")) {
-    		//fire the ball
-    	}
+    	for(Subsystem s : subsystems)
+    		s.updateTeleop();
     }
     
     public void disabledInit() {
