@@ -38,14 +38,16 @@ public class Robot extends NarwhalIterativeRobot {
     
     public void teleopInit() {
     	Narwhal3DJoystick rightJoy = new Narwhal3DJoystick(0);
+    	Narwhal3DJoystick leftJoy = new Narwhal3DJoystick(1);
     	
     	InputManager.getInstance().addJoystick("rightJoy", rightJoy);
+    	InputManager.getInstance().addJoystick("leftJoy", leftJoy);
     	
     	//This is how I want the button mapping to look
     	//This allows us to quickly map buttons and give them names that have meaning
     	//It also is very clean and relatively straight forward and can all be put in one place
-    	InputManager.getInstance().mapAxis("rightX", "rightJoy", JoystickElement.XAXIS);
-    	InputManager.getInstance().mapAxis("rightYThreshed", "rightJoy", JoystickElement.YAXIS_THRESHED);
+    	InputManager.getInstance().mapAxis("rightY", "rightJoy", JoystickElement.YAXIS);
+    	InputManager.getInstance().mapAxis("leftY", "letfJoy", JoystickElement.YAXIS);
     	InputManager.getInstance().mapButton("ToggleIntake", "rightJoy", JoystickElementID.BUTTON1);
     	InputManager.getInstance().mapPOV("IntakePOV", "rightJoy", 0);
     	

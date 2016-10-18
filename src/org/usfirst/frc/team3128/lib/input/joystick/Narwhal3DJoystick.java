@@ -33,14 +33,14 @@ public class Narwhal3DJoystick {
 	 * @return The thresholded value of the x axis (from -1.0 to 1.0) that discards any control within 0.2 of 0
 	 */
 	public double getXThreshed() {
-		return NarMath.Thresh(0.2, joy.getX());
+		return NarMath.thresh(0.2, joy.getX());
 	}
 	
 	/**
 	 * @return The thresholded value of the y axis (from -1.0 to 1.0) that discards any control within 0.2 of 0
 	 */
 	public double getYThreshed() {
-		return NarMath.Thresh(0.2, joy.getY());
+		return NarMath.thresh(0.2, joy.getY());
 	}
 	
 	/**

@@ -1,9 +1,12 @@
 package org.usfirst.frc.team3128.lib.input;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.usfirst.frc.team3128.lib.Log;
 import org.usfirst.frc.team3128.lib.input.joystick.AxisElement;
 import org.usfirst.frc.team3128.lib.input.joystick.ButtonElement;
+import org.usfirst.frc.team3128.lib.input.joystick.InputElement;
 import org.usfirst.frc.team3128.lib.input.joystick.JoystickElement;
 import org.usfirst.frc.team3128.lib.input.joystick.Narwhal3DJoystick;
 import org.usfirst.frc.team3128.lib.input.joystick.POVElement;
@@ -16,11 +19,14 @@ public class InputManager {
 	private static InputManager instance = null;
 	
 	private HashMap<String, Narwhal3DJoystick> joystickMap;
-	private HashMap<String, ButtonElement> buttonMap;
-	private HashMap<String, AxisElement> axisMap;
-	private HashMap<String, POVElement> povMap;
+	private HashMap<String, InputElement> inputMap;
+	private ArrayList<String> invalidElementsAccessed;
 	
-	protected InputManager() {} //Prevent instantiation of singleton
+	protected InputManager() {
+		joystickMap = new HashMap<String, Narwhal3DJoystick>();
+		inputMap = new HashMap<String, InputElement>();
+		invalidElementsAccessed = new ArrayList<String>();
+	}
 	
 	public static InputManager getInstance() {
 		if(instance == null) {
@@ -34,15 +40,15 @@ public class InputManager {
 	}
 	
 	public void mapAxis(String inputName, String joyName, JoystickElement axis) {
-		axisMap.put(inputName, new AxisElement(joyName, axis));
+		inputMap.put(inputName, new AxisElement(joyName, axis));
 	}
 	
 	public void mapButton(String inputName, String joyName, int buttonID) {
-		buttonMap.put(inputName, new ButtonElement(joyName, buttonID));
+		inputMap.put(inputName, new ButtonElement(joyName, buttonID));
 	}
 	
 	public void mapPOV(String inputName, String joyName, int povID) {
-		povMap.put(inputName, new POVElement(joyName, povID));
+		inputMap.put(inputName, new POVElement(joyName, povID));
 	}
 	
 	/**
@@ -51,20 +57,33 @@ public class InputManager {
 	 * @return the unmodified axis value (-1.0 to 1.0)
 	 */
 	public double getAxis(String axisName) {
-		AxisElement axis = axisMap.get(axisName);
+		AxisElement axis = (AxisElement)inputMap.get(axisName);
+		if(axis == null) {
+			if(!invalidElementsAccessed.contains(axisName)) {
+				invalidElementsAccessed.add(axisName);
+				Log.recoverable("InputManager", "Axis " + axisName + " has not been mapped to any input.");
+			}
+			return 0;
+		}
+		
+		if(axis.jsElement.equals(JoystickElement.BUTTON) || axis.jsElement.equals(JoystickElement.POV)) {
+			Log.recoverable("InputManager", axisName + " is not an axis element.");
+			return 0;
+		}
+			
 		Narwhal3DJoystick joystick = joystickMap.get(axis.joyName);
 		double result = 0;
 		
-		if (axis.axis == JoystickElement.XAXIS) {
+		if (axis.jsElement == JoystickElement.XAXIS) {
 			result = joystick.getX();
 		}
-		else if (axis.axis == JoystickElement.YAXIS) {
+		else if (axis.jsElement == JoystickElement.YAXIS) {
 			result = joystick.getY();
 		}
-		else if (axis.axis == JoystickElement.XAXIS_THRESHED) {
+		else if (axis.jsElement == JoystickElement.XAXIS_THRESHED) {
 			result = joystick.getXThreshed();
 		}
-		else if (axis.axis == JoystickElement.YAXIS_THRESHED) {
+		else if (axis.jsElement == JoystickElement.YAXIS_THRESHED) {
 			result = joystick.getYThreshed();
 		}
 		
@@ -77,7 +96,21 @@ public class InputManager {
 	 * @return True if the button is held down, false if the button is up
 	 */
 	public boolean getButton(String buttonName) {
-		ButtonElement button = buttonMap.get(buttonName);
+		ButtonElement button = (ButtonElement)inputMap.get(buttonName);
+		
+		if(button == null) {
+			if(!invalidElementsAccessed.contains(buttonName)) {
+				invalidElementsAccessed.add(buttonName);
+				Log.recoverable("InputManager", "Button " + buttonName + " has not been mapped to any input.");
+			}
+			return false;
+		}
+		
+		if(!button.jsElement.equals(JoystickElement.BUTTON)) {
+			Log.recoverable("InputManager", buttonName + " is not a button element.");
+			return false;
+		}
+		
 		Narwhal3DJoystick joystick = joystickMap.get(button.joyName);
 		
 		return joystick.buttonIsDown(button.buttonID);
@@ -96,7 +129,21 @@ public class InputManager {
 	 *       5
 	 */
 	public int getPOV(String povName) {
-		POVElement pov = povMap.get(povName);
+		POVElement pov = (POVElement)inputMap.get(povName);
+		
+		if(pov == null) {
+			if(!invalidElementsAccessed.contains(povName)) {
+				invalidElementsAccessed.add(povName);
+				Log.recoverable("InputManager", "POV " + povName + " has not been mapped to any input.");
+			}
+			return 0;
+		}
+		
+		if(!pov.jsElement.equals(JoystickElement.POV)) {
+			Log.recoverable("InputManager", povName + " is not a POV element.");
+			return 0;
+		}
+		
 		Narwhal3DJoystick joystick = joystickMap.get(pov.joyName);
 		
 		return joystick.getPOV(pov.povID);
